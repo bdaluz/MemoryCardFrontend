@@ -1,0 +1,21 @@
+<div class="min-h-screen p-5">
+  <div class="container">
+    @for (deck of decks$ | async; track deck.id) {
+
+    <div #deckCardsStack class="deck-cards" (click)="clicked(deck)">
+      <div class="cards"></div>
+      <div class="cards"></div>
+
+      <div class="cards">
+        <div class="deck-details">
+          <h2 class="deck-title">{{ deck.title }}</h2>
+          <p class="deck-description">{{ deck.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    } @empty {
+    <p>No decks found.</p>
+    }
+  </div>
+</div>
