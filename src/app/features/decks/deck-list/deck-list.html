@@ -1,21 +1,36 @@
-<div class="min-h-screen p-5">
-  <div class="container">
-    @for (deck of decks$ | async; track deck.id) {
+<div class="container min-h-screen p-5">
+  @if (decks$ | async; as decks){ @for (deck of decks; track deck.id) {
 
-    <div #deckCardsStack class="deck-cards" (click)="clicked(deck)">
-      <div class="cards"></div>
-      <div class="cards"></div>
+  <div #deckCardsStack class="deck-cards" (click)="clicked(deck)">
+    <div class="cards"></div>
+    <div class="cards"></div>
 
-      <div class="cards">
-        <div class="deck-details">
-          <h2 class="deck-title">{{ deck.title }}</h2>
-          <p class="deck-description">{{ deck.description }}</p>
-        </div>
+    <div class="cards">
+      <div class="deck-details">
+        <h2 class="deck-title">{{ deck.title }}</h2>
+        <p class="deck-description">{{ deck.description }}</p>
       </div>
     </div>
-
-    } @empty {
-    <p>No decks found.</p>
-    }
   </div>
+  } @if (decks.length === 0) {
+  <h3 class="text-lg font-medium text-gray-900">Nenhum baralho criado</h3>
+  <p class="mt-1 text-gray-500">Comece criando seu primeiro baralho de estudos.</p>
+  } } @else {
+  <div class="deck-loading animate-pulse">
+    <div class="cards"></div>
+    <div class="cards"></div>
+
+    <div class="cards">
+      <div class="deck-details">
+        <div class="w-3/4 h-8 bg-gray-300 rounded mb-4 mx-auto mt-4"></div>
+        <div class="w-full h-0.5 bg-gray-200 mb-4"></div>
+        <div class="w-full h-3 bg-gray-200 rounded mb-2"></div>
+        <div class="w-full h-3 bg-gray-200 rounded mb-2"></div>
+        <div class="w-5/6 h-3 bg-gray-200 rounded mb-2"></div>
+        <div class="w-4/6 h-3 bg-gray-200 rounded"></div>
+      </div>
+    </div>
+  </div>
+
+  }
 </div>
