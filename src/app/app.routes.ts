@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DeckList } from './features/decks/deck-list/deck-list';
+import { CardList } from './features/decks/card-list/card-list';
 
 export const routes: Routes = [
   {
@@ -9,7 +9,11 @@ export const routes: Routes = [
   },
   {
     path: 'decks',
-    component: DeckList,
+    loadComponent: () => import('./features/decks/deck-list/deck-list').then((m) => m.DeckList),
+  },
+  {
+    path: 'cards/:id',
+    component: CardList,
   },
   {
     path: '**',

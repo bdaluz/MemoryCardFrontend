@@ -1,22 +1,17 @@
 import { Deck } from './../../../core/models/deck.model';
-import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { environment } from '../../../../environments/environment';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { DeckService } from '../../../core/services/deck.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-deck-list',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterModule],
   templateUrl: './deck-list.html',
-  styleUrl: './deck-list.css',
+  styleUrls: ['deck-list.scss'],
 })
 export class DeckList {
   deckSvc = inject(DeckService);
   decks$?: Observable<Deck[]> = this.deckSvc.getAll();
-
-  clicked(deck: Deck) {
-    console.log('clicked', deck.title);
-  }
 }

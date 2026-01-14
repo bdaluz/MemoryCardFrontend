@@ -6,6 +6,11 @@
     "analytics": "188c8ec0-28a5-470b-8738-aa62fb8c53f4"
   },
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
     "MemoryCardFrontend": {
       "projectType": "application",
@@ -25,7 +30,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {

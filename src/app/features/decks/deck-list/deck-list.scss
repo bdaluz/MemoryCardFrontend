@@ -5,7 +5,7 @@
   align-content: center;
   align-items: center;
   gap: 3rem;
-  padding: 2rem;
+  padding: 1.25rem;
   width: 100%;
   min-height: 100vh;
 }
@@ -25,21 +25,21 @@
   border-radius: 20px;
   position: absolute;
   overflow: hidden;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--shadow-1);
   transform-origin: bottom center;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .cards:nth-child(1) {
-  background-color: #b9b8df;
+  background-color: var(--card3-color);
 }
 
 .cards:nth-child(2) {
-  background-color: #d5d8e2;
+  background-color: var(--card2-color);
 }
 
 .cards:nth-child(3) {
-  background-color: #ffffff;
+  background-color: var(--bg-surface);
 }
 
 .deck-cards:hover .cards:hover {
@@ -53,10 +53,6 @@
 .deck-cards:hover .cards:nth-child(2) {
   transform: rotate(4deg);
 }
-
-/* .deck-cards:hover .cards {
-    color: red;
-} */
 
 .deck-cards:hover .cards:nth-child(1):hover {
   transform: rotate(8deg) translateY(-5px);
@@ -84,7 +80,7 @@
 }
 
 .deck-details .deck-title {
-  color: rgb(66, 86, 175);
+  color: var(--text-body);
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
@@ -95,7 +91,7 @@
   line-height: 1.2em;
   height: 3.7em;
   margin-bottom: 10px;
-  border-bottom: 2px solid rgba(98, 98, 255, 0.5);
+  border-bottom: 2px solid var(--primary);
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -106,7 +102,7 @@
 }
 
 .deck-details .deck-description {
-  color: rgb(38, 38, 41);
+  color: var(--text-body);
 
   font-size: 1rem;
 
@@ -127,42 +123,88 @@
   width: 210px;
   height: 320px;
   position: relative;
+
+  .cards:nth-child(1) {
+    animation: cardLift1 1.5s ease-in-out infinite;
+  }
+
+  .cards:nth-child(2) {
+    animation: cardLift2 1.5s ease-in-out infinite;
+  }
+
+  .cards:nth-child(3) {
+    animation: cardLift3 1.5s ease-in-out infinite;
+  }
+
+  .cards {
+    .deck-details {
+      margin-top: 40%;
+      align-items: center;
+    }
+  }
+
+  .cards:nth-child(1) {
+    background-color: var(--card3-color);
+  }
+  .cards:nth-child(2) {
+    background-color: var(--card2-color);
+  }
+  .cards:nth-child(3) {
+    background-color: var(--bg-surface);
+  }
 }
 
-.deck-loading .cards:nth-child(1) {
-  transform: rotate(7deg) translate(6px, -2px);
+@keyframes cardLift1 {
+  0%,
+  66% {
+    transform: rotate(7deg) translate(6px, -2px);
+    background-color: var(--card3-color);
+  }
+  83% {
+    transform: rotate(7deg) translate(6px, -10px);
+    background-color: var(--card2-color);
+  }
+  100% {
+    transform: rotate(7deg) translate(6px, -2px);
+    background-color: var(--card3-color);
+  }
 }
 
-.deck-loading .cards:nth-child(2) {
-  transform: rotate(4deg) translate(3px, -1px);
+@keyframes cardLift2 {
+  0%,
+  33% {
+    transform: rotate(4deg) translate(3px, -1px);
+    background-color: var(--card2-color);
+  }
+  50% {
+    transform: rotate(4deg) translate(3px, -9px);
+    background-color: var(--bg-surface);
+  }
+  66% {
+    transform: rotate(4deg) translate(3px, -1px);
+    background-color: var(--card2-color);
+  }
+  100% {
+    transform: rotate(4deg) translate(3px, -1px);
+    background-color: var(--card2-color);
+  }
 }
 
-.deck-loading .cards:nth-child(1):hover {
-  transform: rotate(7deg) translate(6px, -12px);
-  transition: transform 0.2s ease-out;
-}
-
-.deck-loading .cards:nth-child(2):hover {
-  transform: rotate(4deg) translate(3px, -12px);
-  transition: transform 0.2s ease-out;
-}
-
-.deck-loading .cards:nth-child(3):hover {
-  transform: translateY(-8px);
-  transition: transform 0.2s ease-out;
-}
-
-.deck-loading .cards {
-  background-color: #e5e7eb;
-  border: 1px solid #d1d5db;
-}
-
-.deck-loading .cards:nth-child(1) {
-  background-color: #d1d5db;
-}
-.deck-loading .cards:nth-child(2) {
-  background-color: #e5e7eb;
-}
-.deck-loading .cards:nth-child(3) {
-  background-color: #f9fafb;
+@keyframes cardLift3 {
+  0% {
+    transform: translateY(0);
+    background-color: var(--bg-surface);
+  }
+  16% {
+    transform: translateY(-8px);
+    background-color: var(--card3-color);
+  }
+  33% {
+    transform: translateY(0);
+    background-color: var(--bg-surface);
+  }
+  100% {
+    transform: translateY(0);
+    background-color: var(--bg-surface);
+  }
 }

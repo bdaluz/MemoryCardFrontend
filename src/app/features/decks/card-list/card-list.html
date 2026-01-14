@@ -1,0 +1,13 @@
+<button routerLink="/decks" class="bg-blue-400 text-black">Go back</button>
+
+<p>card-list works!</p>
+<p>{{ info }}</p>
+@if (cards$ | async; as cards){ @for (card of cards; track card.id) {
+<div class="">
+  <h2 class="deck-title">{{ card.frontText }}</h2>
+</div>
+
+} @if (cards.length === 0){
+<h3 class="">No card created</h3>
+<p class="">Start creating a new card.</p>
+} }
