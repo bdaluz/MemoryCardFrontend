@@ -4,10 +4,11 @@ import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { DeckService } from '../../../core/services/deck.service';
 import { RouterModule } from '@angular/router';
+import { AppHeader } from '../../../shared/components/app-header/app-header';
 
 @Component({
   selector: 'app-deck-list',
-  imports: [AsyncPipe, RouterModule],
+  imports: [AsyncPipe, RouterModule, AppHeader],
   templateUrl: './deck-list.html',
   styleUrls: ['deck-list.scss'],
 })

@@ -1,0 +1,37 @@
+@mixin card-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.25rem;
+  width: 100%;
+}
+
+@mixin card-visual-style {
+  .deck-cards {
+    width: 294px;
+    height: 448px;
+    position: relative;
+    display: block;
+  }
+
+  .cards {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    position: absolute;
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+    transform-origin: bottom center;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: var(--bg-surface);
+
+    @content;
+  }
+}

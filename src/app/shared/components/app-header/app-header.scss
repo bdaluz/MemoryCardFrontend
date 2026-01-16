@@ -1,0 +1,15 @@
+.app-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  padding: 1rem;
+  background-color: var(--bg-surface);
+  box-sizing: border-box;
+
+  h1 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--text-body);
+  }
+}

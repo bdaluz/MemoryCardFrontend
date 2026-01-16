@@ -1,0 +1,20 @@
+@use '../../../../assets/styles/mixins' as m;
+
+.container {
+  @include m.card-grid-layout;
+}
+
+@include m.card-visual-style {
+  padding: 1.5rem;
+  text-align: center;
+  word-break: break-all;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+  }
+}
