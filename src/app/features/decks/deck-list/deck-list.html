@@ -1,34 +1,42 @@
 <app-header title="My Decks">
+  <button (click)="openModal()" class="btn-primary">+ New Deck</button>
 </app-header>
 
 <div class="container">
-  @if (decks$ | async; as decks){ @for (deck of decks; track deck.id) {
+  @if (decks$ | async; as decks) {
+    @for (deck of decks; track deck.id) {
+      <div [routerLink]="['/cards', deck.id]" class="deck-cards">
+        <div class="cards"></div>
+        <div class="cards"></div>
 
-  <div [routerLink]="['/cards', deck.id]" class="deck-cards">
-    <div class="cards"></div>
-    <div class="cards"></div>
+        <div class="cards">
+          <div class="deck-details">
+            <h2 class="deck-title">{{ deck.title }}</h2>
+            <p class="deck-description">{{ deck.description }}</p>
+          </div>
+        </div>
+      </div>
+    }
+    @if (decks.length === 0) {
+      <h3 class="">No deck created</h3>
+      <p class="">Start creating a new deck.</p>
+    }
+  } @else {
+    <div class="deck-loading">
+      <div class="cards"></div>
+      <div class="cards"></div>
 
-    <div class="cards">
-      <div class="deck-details">
-        <h2 class="deck-title">{{ deck.title }}</h2>
-        <p class="deck-description">{{ deck.description }}</p>
+      <div class="cards">
+        <div class="deck-details">
+          <h2>Loading...</h2>
+        </div>
       </div>
     </div>
-  </div>
-  } @if (decks.length === 0) {
-  <h3 class="">No deck created</h3>
-  <p class="">Start creating a new deck.</p>
-  } } @else {
-  <div class="deck-loading">
-    <div class="cards"></div>
-    <div class="cards"></div>
-
-    <div class="cards">
-      <div class="deck-details">
-        <h2>Loading...</h2>
-      </div>
-    </div>
-  </div>
-
+  }
+  @if (modalOpen) {
+    <app-create-deck-modal
+      (close)="closeModal()"
+      (deckCreated)="refreshList()"
+    ></app-create-deck-modal>
   }
 </div>

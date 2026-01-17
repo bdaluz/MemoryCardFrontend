@@ -35,3 +35,120 @@
     @content;
   }
 }
+
+@mixin modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+@mixin modal-content {
+  position: relative;
+  z-index: 51;
+
+  width: 100%;
+  max-width: 32rem;
+
+  background-color: var(--bg-surface);
+  color: var(--text-body);
+  border-radius: 0.75rem;
+
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  @content;
+}
+
+@mixin modal-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--global-gray-200);
+  background-color: var(--bg-surface);
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0.25rem 0 0 0;
+    line-height: 1.4;
+  }
+}
+
+@mixin form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-body);
+}
+
+@mixin form-input {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+
+  border: 1px solid var(--global-gray-300);
+  background-color: var(--bg-default);
+  color: var(--text-body);
+
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+
+  outline: none;
+  transition: all 0.2s;
+
+  &::placeholder {
+    color: var(--text-muted);
+  }
+
+  &:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+  }
+
+  &.has-error,
+  &.ng-invalid.ng-touched {
+    border-color: var(--error);
+
+    &:focus {
+      box-shadow: 0 0 0 1px var(--error);
+    }
+  }
+}
+
+@mixin form-error-container {
+  margin-top: 0.25rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+  color: var(--error);
+
+  p {
+    margin: 0;
+    animation: fadeIn 0.1s ease-in;
+  }
+}
+
+@mixin modal-footer {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}

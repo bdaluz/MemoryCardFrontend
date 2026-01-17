@@ -3,3 +3,8 @@ export interface Deck {
   title: string;
   description: string;
 }
+
+export interface CreateDeckDto {
+  title: string;
+  description: string;
+}

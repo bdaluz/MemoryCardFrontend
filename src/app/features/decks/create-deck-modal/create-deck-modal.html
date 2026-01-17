@@ -1,0 +1,64 @@
+<div class="modal-backdrop">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <h2>Create New Deck</h2>
+      <p>Enter the details to create a deck.</p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          placeholder="e.g., Advanced English"
+          [class.has-error]="form.get('title')?.invalid && form.get('title')?.touched"
+        />
+
+        <div class="error-message">
+          <app-control-error [control]="form.get('title')" label="Title"> </app-control-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          rows="3"
+          formControlName="description"
+          class="no-resize"
+          placeholder="Describe the deck content..."
+          [class.has-error]="form.get('description')?.invalid && form.get('description')?.touched"
+        ></textarea>
+
+        <div class="error-message">
+          <app-control-error [control]="form.get('description')" label="Description">
+          </app-control-error>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button (click)="close.emit()" type="button" class="btn-cancel">Cancel</button>
+
+        <button type="submit" [disabled]="form.invalid || isLoading()" class="btn-primary">
+          @if (isLoading()) {
+            <svg
+              style="opacity: 0.75"
+              class="spinner"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          }
+          {{ isLoading() ? 'Saving...' : 'Create Deck' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
