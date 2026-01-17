@@ -1,6 +1,29 @@
 <app-header title="My Decks">
-  <button (click)="openModal()" class="btn-primary">+ New Deck</button>
+  <button (click)="openModal()" class="btn-primary" [disabled]="isLoading() || error()">
+    + New Deck
+  </button>
 </app-header>
+
+@if (isLoading() || error()) {
+  <div class="loading-wrapper">
+    <div class="deck-loading" [class.is-error]="!!error()">
+      <div class="cards"></div>
+      <div class="cards"></div>
+
+      <div class="cards">
+        <div class="deck-details">
+          @if (isLoading()) {
+            <h2>Loading...</h2>
+          } @else {
+            <h2 class="text-error">Connection Failed</h2>
+            <p>Could not load your decks.</p>
+            <p>Please refresh the page and try again</p>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}
 
 <div class="container">
   @if (decks$ | async; as decks) {
@@ -17,22 +40,12 @@
         </div>
       </div>
     }
-    @if (decks.length === 0) {
+    @if (decks.length === 0 && !isLoading()) {
       <h3 class="">No deck created</h3>
       <p class="">Start creating a new deck.</p>
     }
-  } @else {
-    <div class="deck-loading">
-      <div class="cards"></div>
-      <div class="cards"></div>
-
-      <div class="cards">
-        <div class="deck-details">
-          <h2>Loading...</h2>
-        </div>
-      </div>
-    </div>
   }
+
   @if (modalOpen) {
     <app-create-deck-modal
       (close)="closeModal()"

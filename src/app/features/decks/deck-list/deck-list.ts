@@ -1,8 +1,8 @@
 import { CreateDeckModal } from './../create-deck-modal/create-deck-modal';
 import { Deck } from './../../../core/models/deck.model';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { DeckService } from '../../../core/services/deck.service';
 import { RouterModule } from '@angular/router';
 import { AppHeader } from '../../../shared/components/app-header/app-header';
@@ -15,12 +15,27 @@ import { AppHeader } from '../../../shared/components/app-header/app-header';
 })
 export class DeckList {
   deckSvc = inject(DeckService);
-  decks$?: Observable<Deck[]> = this.deckSvc.getAll();
+  error = signal<string | null>(null);
+  isLoading = signal(true);
+
+  decks$?: Observable<Deck[]> = this.deckSvc.getAll().pipe(
+    tap(() => {
+      this.error.set(null);
+      this.isLoading.set(false);
+    }),
+    catchError((err) => {
+      this.error.set('Failed to load decks.');
+      this.isLoading.set(false);
+      return [];
+    }),
+  );
 
   modalOpen: boolean = false;
 
   openModal() {
-    this.modalOpen = true;
+    if (!this.isLoading()) {
+      this.modalOpen = true;
+    }
   }
 
   closeModal() {

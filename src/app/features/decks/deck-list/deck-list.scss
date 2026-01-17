@@ -96,8 +96,10 @@
 }
 
 .deck-loading {
-  width: 210px;
-  height: 320px;
+  width: 315px;
+  height: 480px;
+  min-width: 210px;
+  min-height: 320px;
   position: relative;
 
   .cards:nth-child(1) {
@@ -127,6 +129,21 @@
   }
   .cards:nth-child(3) {
     background-color: var(--bg-surface);
+  }
+
+  &.is-error {
+    .cards {
+      animation: none !important;
+    }
+    .cards:nth-child(3) {
+      background-color: #56222273;
+      border: 1px solid var(--error);
+    }
+
+    .text-error {
+      color: var(--text-body);
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
@@ -183,4 +200,11 @@
     transform: translateY(0);
     background-color: var(--bg-surface);
   }
+}
+
+.loading-wrapper {
+  height: calc(100vh - 110px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
