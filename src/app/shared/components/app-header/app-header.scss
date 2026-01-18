@@ -12,4 +12,9 @@
     line-height: 1.5;
     color: var(--text-body);
   }
+
+  .nav-actions {
+    display: flex;
+    gap: 10px;
+  }
 }

@@ -5,3 +5,9 @@ export interface Card {
   deckId: string;
   nextReviewDate?: string;
 }
+
+export interface CreateCardDto {
+  deckId: string;
+  frontText: string;
+  backText: string;
+}

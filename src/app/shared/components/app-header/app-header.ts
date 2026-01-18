@@ -6,6 +6,4 @@ import { Component, Input } from '@angular/core';
   templateUrl: './app-header.html',
   styleUrl: './app-header.scss',
 })
-export class AppHeader {
-  @Input() title: string = '';
-}
+export class AppHeader {}

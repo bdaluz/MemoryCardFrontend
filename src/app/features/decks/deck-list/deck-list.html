@@ -41,8 +41,13 @@
       </div>
     }
     @if (decks.length === 0 && !isLoading()) {
-      <h3 class="">No deck created</h3>
-      <p class="">Start creating a new deck.</p>
+      <div class="empty-state-container">
+        <div class="empty-state-card" (click)="openModal()">
+          <h3>No decks yet</h3>
+          <p>Click to create your first deck</p>
+          <button type="button" class="btn-primary">+ New Deck</button>
+        </div>
+      </div>
     }
   }
 

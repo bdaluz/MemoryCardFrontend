@@ -5,6 +5,7 @@
 }
 
 @include m.card-visual-style;
+@include m.empty-state-card;
 
 .cards:nth-child(1) {
   background-color: var(--card3-color);

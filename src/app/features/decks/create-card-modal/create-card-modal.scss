@@ -1,0 +1,44 @@
+@use '../../../../assets/styles/mixins' as m;
+
+.modal-backdrop {
+  @include m.modal-overlay;
+}
+
+.modal-panel {
+  @include m.modal-content {
+    padding: 1.5rem;
+    text-align: center;
+  }
+}
+
+.modal-header {
+  @include m.modal-header;
+}
+
+form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  @include m.form-label;
+}
+
+input,
+textarea {
+  @include m.form-input;
+
+  &.no-resize {
+    resize: none;
+  }
+}
+
+.error-message {
+  @include m.form-error-container;
+}
+
+.form-actions {
+  @include m.modal-footer;
+}

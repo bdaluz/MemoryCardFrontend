@@ -1,21 +1,41 @@
-<button routerLink="/decks" class="bg-blue-400 text-black">My decks</button>
-<div class="container">
-  @if (cards$ | async; as cards){ @for (card of cards; track card.id) {
-  <div class="">
-    <div class="deck-cards">
-      <div class="cards"></div>
-      <div class="cards"></div>
+<app-header>
+  <button routerLink="/decks" class="btn-ghost">My decks</button>
+  <button (click)="openModal()" class="btn-primary">+ New Card</button>
+</app-header>
 
-      <div class="cards">
-        <div class="deck-details">
-          <h2 class="deck-title">{{ card.frontText }}</h2>
+<div class="container">
+  @if (cards(); as cards) {
+    @for (card of cards; track card.id) {
+      <div class="">
+        <div class="deck-cards">
+          <div class="cards"></div>
+          <div class="cards"></div>
+
+          <div class="cards">
+            <div class="deck-details">
+              <h2 class="deck-title">{{ card.frontText }}</h2>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    }
+    @if (cards.length === 0) {
+      <div class="empty-state-container">
+        <div class="empty-state-card" (click)="openModal()">
+          <h3>No cards yet</h3>
+          <p>Click to create your first card</p>
+          <button type="button" class="btn-primary">+ New Card</button>
+        </div>
+      </div>
+    }
+  }
 
-  } @if (cards.length === 0){
-  <h3 class="">No card created</h3>
-  <p class="">Start creating a new card.</p>
-  } }
+  @if (modalOpen()) {
+    <app-create-card-modal
+      [deckId]="deckId"
+      (close)="closeModal()"
+      (cardCreated)="refreshCardList()"
+    >
+    </app-create-card-modal>
+  }
 </div>

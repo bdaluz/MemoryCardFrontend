@@ -67,3 +67,38 @@
     cursor: not-allowed;
   }
 }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--text-body);
+
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--global-gray-500);
+    color: var(--text-body);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    background-color: var(--global-gray-300);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent;
+  }
+}
