@@ -68,6 +68,24 @@
   }
 }
 
+.btn-danger {
+  @extend .btn-primary;
+
+  background-color: var(--error);
+
+  &:hover {
+    background-color: #b91c1c;
+    box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
+  }
+
+  &:active {
+    background-color: #991b1b;
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.4);
+  }
+}
+
 .btn-ghost {
   display: inline-flex;
   align-items: center;

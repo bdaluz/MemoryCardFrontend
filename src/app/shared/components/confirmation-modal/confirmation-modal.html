@@ -1,0 +1,25 @@
+<div class="modal-backdrop" (click)="onCancel()">
+  <div class="modal-panel" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ title }}</h2>
+    </div>
+
+    <div class="modal-body">
+      <p>{{ message }}</p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancel" (click)="onCancel()">
+        {{ cancelText }}
+      </button>
+
+      <button
+        type="button"
+        [class]="variant === 'danger' ? 'btn-danger' : 'btn-primary'"
+        (click)="onConfirm()"
+      >
+        {{ confirmText }}
+      </button>
+    </div>
+  </div>
+</div>

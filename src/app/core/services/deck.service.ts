@@ -18,4 +18,8 @@ export class DeckService {
   create(deck: CreateDeckDto): Observable<void> {
     return this.http.post<void>(this.apiUrl, deck);
   }
+
+  deleteDeck(deckId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${deckId}`);
+  }
 }
